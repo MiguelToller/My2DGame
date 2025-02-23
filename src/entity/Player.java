@@ -16,19 +16,18 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	KeyHandler keyH;
-
 	public final int screenX;
 	public final int screenY;
-	int hasKey = 0;
-	
+	public int hasKey = 0;
+
 	public Player(GamePanel gp, KeyHandler keyH) {
 
 		this.gp = gp;
 		this.keyH = keyH;
-		
-		screenX = gp.screenWidth/2 - (gp.tileSize/2);
-		screenY = gp.screenHeight/2 - (gp.tileSize/2);
-		
+
+		screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
 		solidArea = new Rectangle();
 		solidArea.x = 8;
 		solidArea.y = 16;
@@ -84,23 +83,31 @@ public class Player extends Entity {
 			} else if (keyH.rightPressed == true) {
 				direction = "right";
 			}
-			
+
 			// CHECK TILE COLLISION
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
-			
+
 			// CHECK OBJECT COLLISION
 			int objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
-			
+
 			// IF COLLISION IS FALSE, PLAYER CAN MOVE
-			if(collisionOn == false) {
-				
-				switch(direction) {
-				case "up": worldY -= speed; break;
-				case "down": worldY += speed; break;
-				case "left": worldX -= speed; break;
-				case "right": worldX += speed; break;
+			if (collisionOn == false) {
+
+				switch (direction) {
+				case "up":
+					worldY -= speed;
+					break;
+				case "down":
+					worldY += speed;
+					break;
+				case "left":
+					worldX -= speed;
+					break;
+				case "right":
+					worldX += speed;
+					break;
 				}
 			}
 
@@ -116,30 +123,47 @@ public class Player extends Entity {
 			}
 		}
 	}
-	
+
 	public void pickUpObject(int index) {
-		if(index != 999) {
+		if (index != 999) {
 			String objectName = gp.obj[index].name;
-			switch(objectName) {
+			switch (objectName) {
 			case "Key":
 				gp.playSE(1);
 				hasKey++;
 				gp.obj[index] = null;
-				System.out.println("Key: "+hasKey);
+				gp.ui.showMessage("You got a key!");
 				break;
 			case "Door":
 				if (hasKey > 0) {
 					gp.playSE(3);
 					gp.obj[index] = null;
 					hasKey--;
+					gp.ui.showMessage("You opened the door!");
+				} else {
+					gp.ui.showMessage("You need a key!");
 				}
-				System.out.println("Key: "+hasKey);
+				System.out.println("Key: " + hasKey);
 				break;
 			case "Boots":
 				gp.playSE(2);
 				speed += 2;
 				gp.obj[index] = null;
+				gp.ui.showMessage("Speed up!");
 				break;
+			case "Chest":
+				if (!gp.ui.getTreasure) {
+					gp.ui.getTreasure = true;
+					gp.stopMusic();
+
+					if (!gp.ui.treasureSoundPlayed) {
+						gp.playSE(4);
+						gp.ui.treasureSoundPlayed = true;
+					}
+				// BOOTS EFFECT
+				gp.player.speed += 2;
+				gp.obj[index] = null;
+				}
 			}
 		}
 	}

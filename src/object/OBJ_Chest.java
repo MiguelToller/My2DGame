@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Chest extends SuperObject{
-	
+public class OBJ_Chest extends SuperObject {
+
 	public OBJ_Chest() {
 		name = "Chest";
 		try {
@@ -14,6 +14,5 @@ public class OBJ_Chest extends SuperObject{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}	
-
+	}
 }
