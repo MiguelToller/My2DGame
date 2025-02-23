@@ -25,9 +25,9 @@ public class UI {
 
 		arial_40 = new Font("Arial", Font.PLAIN, 40); // font name, font style and font size.
 		arial_80B = new Font("Arial", Font.BOLD, 80);
-		OBJ_Key key = new OBJ_Key();
+		OBJ_Key key = new OBJ_Key(gp);
 		keyImage = key.image;
-		OBJ_Boots boots = new OBJ_Boots();
+		OBJ_Boots boots = new OBJ_Boots(gp);
 		bootsImage = boots.image;
 	}
 
