@@ -17,7 +17,6 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
-	public int hasKey = 0;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -48,7 +47,7 @@ public class Player extends Entity {
 	}
 
 	public void getPlayerImage() {
-		
+
 		up1 = setup("player_up_1");
 		up2 = setup("player_up_2");
 		up3 = setup("player_up_3");
@@ -66,17 +65,17 @@ public class Player extends Entity {
 	public BufferedImage setup(String imageName) {
 		UtilityTool uTool = new UtilityTool();
 		BufferedImage image = null;
-		
+
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName +".png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
 			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-			
-		}catch(IOException e){
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return image;
 	}
-	
+
 	public void update() {
 
 		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
@@ -134,45 +133,7 @@ public class Player extends Entity {
 
 	public void pickUpObject(int index) {
 		if (index != 999) {
-			String objectName = gp.obj[index].name;
-			switch (objectName) {
-			case "Key":
-				gp.playSE(1);
-				hasKey++;
-				gp.obj[index] = null;
-				gp.ui.showMessage("You got a key!");
-				break;
-			case "Door":
-				if (hasKey > 0) {
-					gp.playSE(3);
-					gp.obj[index] = null;
-					hasKey--;
-					gp.ui.showMessage("You opened the door!");
-				} else {
-					gp.ui.showMessage("You need a key!");
-				}
-				System.out.println("Key: " + hasKey);
-				break;
-			case "Boots":
-				gp.playSE(2);
-				speed += 2;
-				gp.obj[index] = null;
-				gp.ui.showMessage("Speed up!");
-				break;
-			case "Chest":
-				if (!gp.ui.getTreasure) {
-					gp.ui.getTreasure = true;
-					gp.stopMusic();
-
-					if (!gp.ui.treasureSoundPlayed) {
-						gp.playSE(4);
-						gp.ui.treasureSoundPlayed = true;
-					}
-				// BOOTS EFFECT
-				gp.player.speed += 2;
-				gp.obj[index] = null;
-				}
-			}
+			
 		}
 	}
 
