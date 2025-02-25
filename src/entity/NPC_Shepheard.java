@@ -13,6 +13,7 @@ public class NPC_Shepheard extends Entity {
 		speed = 1;
 
 		getImage();
+		setDialogue();
 	}
 
 	public void getImage() {
@@ -27,12 +28,20 @@ public class NPC_Shepheard extends Entity {
 		right2 = setup("/npc/shepheard_right_2");
 	}
 
+	public void setDialogue() {
+
+		dialogues[0] = "Hello, lad.";
+		dialogues[1] = "So you've come to this island to \nfind the treasure?";
+		dialogues[2] = "I'm a bit too old for taking an adventure.";
+		dialogues[3] = "Well, good luck on you.";
+	}
+
 	public void setAction() {
-		
+
 		actionLockCounter++;
 
-		if(actionLockCounter == 120) {
-			
+		if (actionLockCounter == 120) {
+
 			Random random = new Random();
 			int i = random.nextInt(100) + 1; // pick up a number from 1 to 100
 
@@ -44,8 +53,16 @@ public class NPC_Shepheard extends Entity {
 				direction = "left";
 			if (i > 75 && i <= 100)
 				direction = "right";
-			
+
 			actionLockCounter = 0;
 		}
+	}
+
+	public void speak() {
+		
+		// Do this character specific stuff
+
+		super.speak();
 	}	
+
 }
