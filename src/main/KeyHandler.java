@@ -22,27 +22,98 @@ public class KeyHandler implements KeyListener {
 
 		int code = e.getKeyCode();
 
+		// TITLE STATE
+		if (gp.gameState == gp.titleState) {
+
+			if (gp.ui.titleScreenState == 0) {
+
+				if (code == KeyEvent.VK_W) {
+					gp.ui.commandNum--;
+					if (gp.ui.commandNum < 0)
+						gp.ui.commandNum = 2;
+				}
+
+				if (code == KeyEvent.VK_S) {
+					gp.ui.commandNum++;
+					if (gp.ui.commandNum > 2)
+						gp.ui.commandNum = 0;
+				}
+
+				if (code == KeyEvent.VK_ENTER) {
+					if (gp.ui.commandNum == 0) {
+						gp.ui.titleScreenState = 1;
+					}
+					if (gp.ui.commandNum == 1) {
+						// add later
+					}
+					if (gp.ui.commandNum == 2) {
+						System.exit(0);
+					}
+				}
+				
+			}
+
+			else if (gp.ui.titleScreenState == 1) {
+
+				if (code == KeyEvent.VK_W) {
+					gp.ui.commandNum--;
+					if (gp.ui.commandNum < 0)
+						gp.ui.commandNum = 3;
+				}
+
+				if (code == KeyEvent.VK_S) {
+					gp.ui.commandNum++;
+					if (gp.ui.commandNum > 3)
+						gp.ui.commandNum = 0;
+				}
+
+				if (code == KeyEvent.VK_ENTER) {
+					if (gp.ui.commandNum == 0) {
+						System.out.println("Do some fighter specific stuff!");
+						gp.gameState = gp.playState;
+						gp.playMusic(0);
+					}
+					if (gp.ui.commandNum == 1) {
+						System.out.println("Do some thief specific stuff!");
+						gp.gameState = gp.playState;
+						gp.playMusic(0);
+					}
+					if (gp.ui.commandNum == 2) {
+						System.out.println("Do some sorcerer specific stuff!");
+						gp.gameState = gp.playState;
+						gp.playMusic(0);
+					}
+					if (gp.ui.commandNum == 3) {
+						gp.ui.titleScreenState = 0; // back
+						
+					}
+				}
+
+			}
+
+		}
+
 		// PLAY STATE
 		if (gp.gameState == gp.playState) {
 
-			if (code == KeyEvent.VK_W) {
+			if (code == KeyEvent.VK_W)
 				upPressed = true;
-			}
-			if (code == KeyEvent.VK_S) {
+
+			if (code == KeyEvent.VK_S)
 				downPressed = true;
-			}
-			if (code == KeyEvent.VK_A) {
+
+			if (code == KeyEvent.VK_A)
 				leftPressed = true;
-			}
-			if (code == KeyEvent.VK_D) {
+
+			if (code == KeyEvent.VK_D)
 				rightPressed = true;
-			}
-			if (code == KeyEvent.VK_P) {
+
+			if (code == KeyEvent.VK_P)
 				gp.gameState = gp.pauseState;
-			}
-			if (code == KeyEvent.VK_ENTER) {
+
+			if (code == KeyEvent.VK_ENTER)
 				enterPressed = true;
-			}
+
 		}
 
 		// PAUSE STATE
