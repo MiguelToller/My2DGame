@@ -48,12 +48,13 @@ public class EventHandler {
 
 		if (canTouchEvent == true) {
 			
-			if (hit(27, 16, "right") == true) {damagePit(27, 16, gp.dialogueState);}
-			if (hit(23, 19, "any") == true) {damagePit(23, 19, gp.dialogueState);}
-			// if (hit(27, 16, "right") == true) {teleport(27, 16, gp.dialogueState);}
+			//if (hit(27, 16, "right") == true) {damagePit(27, 16, gp.dialogueState);}
+			//if (hit(23, 19, "any") == true) {damagePit(23, 19, gp.dialogueState);}
+			if (hit(23, 14, "any") == true) {damagePit(23, 19, gp.dialogueState);}
+			if (hit(27, 16, "any") == true) {teleport(27, 16, gp.dialogueState);}
 			if (hit(23, 12, "up") == true) {healingPool(23, 12, gp.dialogueState);}
 		}
-		
+
 	}
 
 	public boolean hit(int col, int row, String reqDirection) {
