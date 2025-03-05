@@ -3,6 +3,7 @@ package main;
 import entity.NPC_Shepheard;
 import monster.MON_GreenSlime;
 import object.OBJ_Door;
+import object.OBJ_Key;
 
 public class AssetSetter {
 
@@ -18,6 +19,9 @@ public class AssetSetter {
 		gp.obj[0].worldX = gp.tileSize*10;
 		gp.obj[0].worldY = gp.tileSize*12;
 		
+		gp.obj[1] = new	OBJ_Key(gp);
+		gp.obj[1].worldX = gp.tileSize*25;
+		gp.obj[1].worldY = gp.tileSize*19;
 	}
 
 	public void setNPC() {
