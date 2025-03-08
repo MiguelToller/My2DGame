@@ -2,8 +2,11 @@ package main;
 
 import entity.NPC_Shepheard;
 import monster.MON_GreenSlime;
+import object.OBJ_Axe;
 import object.OBJ_Door;
 import object.OBJ_Key;
+import object.OBJ_Potion_Red;
+import object.OBJ_Shield_Blue;
 
 public class AssetSetter {
 
@@ -15,13 +18,32 @@ public class AssetSetter {
 
 	public void setObject() {
 		
-		gp.obj[0] = new	OBJ_Door(gp);
-		gp.obj[0].worldX = gp.tileSize*10;
-		gp.obj[0].worldY = gp.tileSize*12;
+		int i = 0;
 		
-		gp.obj[1] = new	OBJ_Key(gp);
-		gp.obj[1].worldX = gp.tileSize*25;
-		gp.obj[1].worldY = gp.tileSize*19;
+		gp.obj[i] = new	OBJ_Door(gp);
+		gp.obj[i].worldX = gp.tileSize*10;
+		gp.obj[i].worldY = gp.tileSize*12;
+		i++;
+
+		gp.obj[i] = new	OBJ_Key(gp);
+		gp.obj[i].worldX = gp.tileSize*21;
+		gp.obj[i].worldY = gp.tileSize*19;
+		i++;
+		
+		gp.obj[i] = new	OBJ_Axe(gp);
+		gp.obj[i].worldX = gp.tileSize*33;
+		gp.obj[i].worldY = gp.tileSize*21;
+		i++;
+		
+		gp.obj[i] = new	OBJ_Shield_Blue(gp);
+		gp.obj[i].worldX = gp.tileSize*35;
+		gp.obj[i].worldY = gp.tileSize*21;
+		i++;
+		
+		gp.obj[i] = new	OBJ_Potion_Red(gp);
+		gp.obj[i].worldX = gp.tileSize*22;
+		gp.obj[i].worldY = gp.tileSize*27;
+		i++;
 	}
 
 	public void setNPC() {
