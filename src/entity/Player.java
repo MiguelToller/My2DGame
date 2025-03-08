@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Key;
+import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Fireball;
 import object.OBJ_Iron_Sword;
@@ -56,6 +57,9 @@ public class Player extends Entity {
 		level = 1;
 		maxLife = 6;
 		life = maxLife;
+		maxMana = 4;
+		mana = maxMana;
+		ammo = 10;
 		strength = 1; // more strength, more damage he gives
 		dexterity = 1; // more dexterity, less damage he receives
 		exp = 0;
@@ -64,6 +68,7 @@ public class Player extends Entity {
 		currentWeapon = new OBJ_Iron_Sword(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
 		projectile = new OBJ_Fireball(gp);
+		//projectile = new OBJ_Rock(gp);
 		attack = getAttack();
 		defense = getDefense();
 	}
@@ -183,7 +188,6 @@ public class Player extends Entity {
 			}
 			
 			if (keyH.enterPressed == true && attackCanceled == false) {
-//				gp.playSE(); // attack sound
 				attacking = true;
 				spriteCounter = 0;
 			}
@@ -203,10 +207,14 @@ public class Player extends Entity {
 			}
 		}
 		
-		if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 50) {
+		if (gp.keyH.shotKeyPressed == true && projectile.alive == false 
+				&& shotAvailableCounter == 50 && projectile.haveResource(this) == true) {
 			
 			// SET DEFAULT COORDINATES, DIRECTION AND USER
 			projectile.set(worldX, worldY, direction, true, this);
+			
+			// SUBTRACT THE COST (MANA, AMMO, ETC.)
+			projectile.subtractResource(this);
 			
 			// ADD IT TO THE LIST
 			gp.projectileList.add(projectile);
