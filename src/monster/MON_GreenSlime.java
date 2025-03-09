@@ -8,6 +8,7 @@ import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Rock;
+import object.OBJ_Slime_Staff;
 
 public class MON_GreenSlime extends Entity {
 	
@@ -90,7 +91,7 @@ public class MON_GreenSlime extends Entity {
 	public void checkDrop() {
 		
 		// CAST A DIE
-		int i = new Random().nextInt(100)+1;
+		int i = new Random().nextInt(120)+1;
 		
 		// SET THE MONSTER DROP
 		if(i < 50) {
@@ -101,6 +102,9 @@ public class MON_GreenSlime extends Entity {
 		}
 		if(i >= 75 && i < 100) {
 			dropItem(new OBJ_ManaCrystal(gp));
+		}
+		if (i >= 100 && i < 120) {
+			dropItem(new OBJ_Slime_Staff(gp));
 		}
 	}
 }

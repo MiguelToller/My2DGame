@@ -86,6 +86,7 @@ public class Entity {
 	public final int type_shield = 5;
 	public final int type_consumable = 6;
 	public final int type_pickupOnly = 7;
+	public final int type_staff = 8;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -141,6 +142,7 @@ public class Entity {
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
 		if (this.type == type_monster && contactPlayer == true) {
