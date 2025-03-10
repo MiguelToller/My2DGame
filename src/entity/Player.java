@@ -128,14 +128,14 @@ public class Player extends Entity {
 		}
 		
 		if(currentWeapon.type == type_staff) {
-			attackUp1 = setup("/player/pAttack_up_1", gp.tileSize, gp.tileSize * 2);
-			attackUp2 = setup("/player/pAttack_up_2", gp.tileSize, gp.tileSize * 2);
-			attackDown1 = setup("/player/pAttack_down_1", gp.tileSize, gp.tileSize * 2);
-			attackDown2 = setup("/player/pAttack_down_2", gp.tileSize, gp.tileSize * 2);
-			attackLeft1 = setup("/player/pAttack_left_1", gp.tileSize * 2, gp.tileSize);
-			attackLeft2 = setup("/player/pAttack_left_2", gp.tileSize * 2, gp.tileSize);
-			attackRight1 = setup("/player/pAttack_right_1", gp.tileSize * 2, gp.tileSize);
-			attackRight2 = setup("/player/pAttack_right_2", gp.tileSize * 2, gp.tileSize);
+			attackUp1 = setup("/player/pSStaff_up_1", gp.tileSize, gp.tileSize * 2);
+			attackUp2 = setup("/player/pSStaff_up_2", gp.tileSize, gp.tileSize * 2);
+			attackDown1 = setup("/player/pSStaff_down_1", gp.tileSize, gp.tileSize * 2);
+			attackDown2 = setup("/player/pSStaff_down_2", gp.tileSize, gp.tileSize * 2);
+			attackLeft1 = setup("/player/pSStaff_left_1", gp.tileSize * 2, gp.tileSize);
+			attackLeft2 = setup("/player/pSStaff_left_2", gp.tileSize * 2, gp.tileSize);
+			attackRight1 = setup("/player/pSStaff_right_1", gp.tileSize * 2, gp.tileSize);
+			attackRight2 = setup("/player/pSStaff_right_2", gp.tileSize * 2, gp.tileSize);
 		}
 	}
 
@@ -400,6 +400,9 @@ public class Player extends Entity {
 			gp.iTile[i].life--;
 			gp.iTile[i].invincible = true;
 			
+			// Generate particle
+			generateParticle(gp.iTile[i], gp.iTile[i]);
+			
 			if(gp.iTile[i].life == 0)
 				gp.iTile[i] = gp.iTile[i].getDestroyedForm();
 		}
@@ -452,8 +455,13 @@ public class Player extends Entity {
 				currentWeapon = selectedItem;
 				attack = getAttack();
 				getPlayerAttackImage();
+				castMagic();
 			}
 		}
+	}
+	
+	public void castMagic( ){
+		
 	}
 	
 	public void draw(Graphics2D g2) {
