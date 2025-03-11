@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Shield_Wood;
-import object.OBJ_Fireball;
+import object.OBJ_Slime_Staff;
+import object.OBJ_Fire_Staff;
 import object.OBJ_Iron_Sword;
+import object.OBJ_Rock;
 
 public class Player extends Entity {
 
@@ -65,10 +67,12 @@ public class Player extends Entity {
 		coin = 0;
 		currentWeapon = new OBJ_Iron_Sword(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
-		projectile = new OBJ_Fireball(gp);
-		//projectile = new OBJ_Rock(gp);
 		attack = getAttack();
 		defense = getDefense();
+		
+		if (currentWeapon instanceof OBJ_Staff) {
+		    projectile = ((OBJ_Staff) currentWeapon).getProjectile();
+		}
 	}
 	
 	public void setItems() {
@@ -141,8 +145,9 @@ public class Player extends Entity {
 
 	public void update() {
 		
-		if (attacking == true) 
+		if (attacking == true) {
 			attacking();
+		}
 			
 		else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true
 				|| keyH.enterPressed == true) {
@@ -218,23 +223,6 @@ public class Player extends Entity {
 			}
 		}
 		
-		if (gp.keyH.shotKeyPressed == true && projectile.alive == false
-				&& shotAvailableCounter == 50 && projectile.haveResource(this) == true) {
-			
-			// SET DEFAULT COORDINATES, DIRECTION AND USER
-			projectile.set(worldX, worldY, direction, true, this);
-			
-			// SUBTRACT THE COST (MANA, AMMO, ETC.)
-			projectile.subtractResource(this);
-			
-			// ADD IT TO THE LIST
-			gp.projectileList.add(projectile);
-			
-			shotAvailableCounter = 0;
-			
-			gp.playSE(9);
-		}
-
 		// This needs to be outside of key if statement!
 		if (invincible == true) {
 			invincibleCounter++;
@@ -244,9 +232,6 @@ public class Player extends Entity {
 			}
 		}
 		
-		if (shotAvailableCounter < 50) {
-			shotAvailableCounter++;
-		}
 		if(life > maxLife) {
 			life = maxLife;
 		}
@@ -265,42 +250,50 @@ public class Player extends Entity {
 		if (spriteCounter > 10 && spriteCounter <= 40) {
 			spriteNum = 2;
 			
-			// Save the current worldX, worldY, solidArea
-			int currentWorldX = worldX;
-			int currentWorldY = worldY;
-			int solidAreaWidth = solidArea.width;
-			int solidAreaHeight = solidArea.height;
-			
-			// Adjust player's worldX/Y for the attackArea
-			switch (direction) {
-			case "up": worldY -= attackArea.height; break;
-			case "down": worldY += attackArea.height; break;
-			case "left": worldX -= attackArea.width; break;
-			case "right": worldX += attackArea.width; break;
+			if (attacking && currentWeapon instanceof OBJ_Staff) {
+			    OBJ_Staff staff = (OBJ_Staff) currentWeapon;
+			    if (staff.getProjectile().haveResource(this)) {
+			        staff.use(this);
+			    }
+			} else {
+				
+				// Save the current worldX, worldY, solidArea
+				int currentWorldX = worldX;
+				int currentWorldY = worldY;
+				int solidAreaWidth = solidArea.width;
+				int solidAreaHeight = solidArea.height;
+				
+				// Adjust player's worldX/Y for the attackArea
+				switch (direction) {
+				case "up": worldY -= attackArea.height; break;
+				case "down": worldY += attackArea.height; break;
+				case "left": worldX -= attackArea.width; break;
+				case "right": worldX += attackArea.width; break;
+				}
+				
+				// attackArea becomes solidArea
+				solidArea.width = attackArea.width;
+				solidArea.height = attackArea.height;
+				
+				// Check monster collision with the updated worldX, worldY and solidArea
+				int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+				damageMonster(monsterIndex, attack);
+				
+				int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+				damageInteractiveTile(iTileIndex);
+				
+				// After checking collision, restore the original data
+				worldX = currentWorldX;
+				worldY = currentWorldY;
+				solidArea.width = solidAreaWidth;
+				solidArea.height = solidAreaHeight;
 			}
 			
-			// attackArea becomes solidArea
-			solidArea.width = attackArea.width;
-			solidArea.height = attackArea.height;
-			
-			// Check monster collision with the updated worldX, worldY and solidArea
-			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-			damageMonster(monsterIndex, attack);
-			
-			int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-			damageInteractiveTile(iTileIndex);
-			
-			// After checking collision, restore the original data
-			worldX = currentWorldX;
-			worldY = currentWorldY;
-			solidArea.width = solidAreaWidth;
-			solidArea.height = solidAreaHeight;
-		}
-		
-		if (spriteCounter > 25) {
-			spriteNum = 1;
-			spriteCounter = 0;
-			attacking = false;
+			if (spriteCounter > 25) {
+				spriteNum = 1;
+				spriteCounter = 0;
+				attacking = false;
+			}
 		}
 	}
 
@@ -453,15 +446,9 @@ public class Player extends Entity {
 			}
 			if(selectedItem.type == type_staff) {
 				currentWeapon = selectedItem;
-				attack = getAttack();
 				getPlayerAttackImage();
-				castMagic();
 			}
 		}
-	}
-	
-	public void castMagic( ){
-		
 	}
 	
 	public void draw(Graphics2D g2) {

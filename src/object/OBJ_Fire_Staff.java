@@ -4,19 +4,19 @@ import entity.Entity;
 import entity.OBJ_Staff;
 import main.GamePanel;
 
-public class OBJ_Slime_Staff extends OBJ_Staff {
+public class OBJ_Fire_Staff extends OBJ_Staff {
 	
 	GamePanel gp;
 
-	public OBJ_Slime_Staff(GamePanel gp) {
+	public OBJ_Fire_Staff(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		
-		projectile = new OBJ_Rock(gp);
+		projectile = new OBJ_Fireball(gp);
 		type = type_staff;
-		name = "Slime Staff";
+		name = "Fire Staff";
 		down1 = setup("/objects/slime_staff", gp.tileSize, gp.tileSize);
-		description = "[Slime Staff]\nA rare drop from slimes.";
+		description = "[Fire Staff]\nFire Force.";
 	}
 	
 	public void use(Entity entity) {

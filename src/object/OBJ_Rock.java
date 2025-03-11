@@ -15,7 +15,7 @@ public class OBJ_Rock extends Projectile{
 		this.gp = gp;
 		
 		name = "Rock";
-		speed = 8;
+		speed = 6;
 		maxLife = 80;
 		life = maxLife;
 		attack = 1;
@@ -37,14 +37,14 @@ public class OBJ_Rock extends Projectile{
 	
 	public boolean haveResource(Entity user) {
 		boolean haveResource = false;
-		if(user.ammo >= useCost) {
+		if(user.mana >= useCost) {
 			haveResource = true;
 		}
 		return haveResource;
 	}
 	
 	public void subtractResource(Entity user) {
-		user.ammo -= useCost;
+		user.mana -= useCost;
 	}
 	
 	public Color getParticleColor() {
