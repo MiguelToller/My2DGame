@@ -13,11 +13,18 @@ public class OBJ_Staff extends Entity {
     public Projectile getProjectile() {
         return projectile;
     }
+    
+    public Projectile createProjectile() {
+    	return new Projectile(gp);
+    }
 
     public void use(Entity user) {
+    	
         if (projectile != null && projectile.haveResource(user)) {
-            projectile.set(user.worldX, user.worldY, user.direction, true, user);
-            gp.projectileList.add(projectile);
+        	Projectile newProjectile = createProjectile();
+        	newProjectile.set(user.worldX, user.worldY, user.direction, true, user);
+            gp.projectileList.add(newProjectile);
+            projectile.subtractResource(user);
         } else {
         	user.attacking = false;
         }

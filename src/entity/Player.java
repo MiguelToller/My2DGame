@@ -71,7 +71,7 @@ public class Player extends Entity {
 		defense = getDefense();
 		
 		if (currentWeapon instanceof OBJ_Staff) {
-		    projectile = ((OBJ_Staff) currentWeapon).getProjectile();
+		    projectile = ((OBJ_Staff) currentWeapon).createProjectile();
 		}
 	}
 	
@@ -252,7 +252,12 @@ public class Player extends Entity {
 			
 			if (attacking && currentWeapon instanceof OBJ_Staff) {
 			    OBJ_Staff staff = (OBJ_Staff) currentWeapon;
+			    
 			    if (staff.getProjectile().haveResource(this)) {
+			    	Projectile newProjectile = staff.createProjectile();
+			    	
+			        newProjectile.set(this.worldX, this.worldY, this.direction, true, this);
+			        gp.projectileList.add(newProjectile);
 			        staff.use(this);
 			    }
 			} else {
@@ -287,13 +292,13 @@ public class Player extends Entity {
 				worldY = currentWorldY;
 				solidArea.width = solidAreaWidth;
 				solidArea.height = solidAreaHeight;
+				}
 			}
-			
-			if (spriteCounter > 25) {
-				spriteNum = 1;
-				spriteCounter = 0;
-				attacking = false;
-			}
+		
+		if (spriteCounter > 25) {
+			spriteNum = 1;
+			spriteCounter = 0;
+			attacking = false;
 		}
 	}
 

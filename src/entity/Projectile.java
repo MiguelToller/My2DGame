@@ -62,7 +62,6 @@ public class Projectile extends Entity {
 	}
 	
 	public boolean haveResource(Entity user) {
-			
 		boolean haveResource = false;
 		return haveResource;
 	}
