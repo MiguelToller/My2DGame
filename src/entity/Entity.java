@@ -45,7 +45,7 @@ public class Entity {
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
 	public int invincibleCounter = 0;
-	public int shotAvailableCounter = 0;
+	public int shotAvailableCounter = 20;
 	int dyingCounter = 0;
 	int hpBarCounter = 0;
 	
@@ -224,10 +224,6 @@ public class Entity {
 			else if (spriteNum == 2)
 				spriteNum = 1;
 			spriteCounter = 0;
-		}
-		
-		if (shotAvailableCounter < 50) {
-			shotAvailableCounter++;
 		}
 	}
 	

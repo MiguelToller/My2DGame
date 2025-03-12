@@ -5,7 +5,7 @@ import monster.MON_GreenSlime;
 import object.OBJ_Axe;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Door;
-import object.OBJ_Fire_Staff;
+import object.OBJ_Inferno_Fork;
 import object.OBJ_Heart;
 import object.OBJ_Key;
 import object.OBJ_ManaCrystal;
@@ -56,7 +56,7 @@ public class AssetSetter {
 		gp.obj[i].worldY = gp.tileSize*21;
 		i++;
 		
-		gp.obj[i] = new	OBJ_Fire_Staff(gp);
+		gp.obj[i] = new	OBJ_Inferno_Fork(gp);
 		gp.obj[i].worldX = gp.tileSize*31;
 		gp.obj[i].worldY = gp.tileSize*21;
 		i++;

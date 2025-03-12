@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Shield_Wood;
-import object.OBJ_Slime_Staff;
-import object.OBJ_Fire_Staff;
 import object.OBJ_Iron_Sword;
-import object.OBJ_Rock;
 
 public class Player extends Entity {
 
@@ -131,16 +128,17 @@ public class Player extends Entity {
 			attackRight2 = setup("/player/pAxe_right_2", gp.tileSize * 2, gp.tileSize);
 		}
 		
-		if(currentWeapon.type == type_staff) {
-			attackUp1 = setup("/player/pSStaff_up_1", gp.tileSize, gp.tileSize * 2);
-			attackUp2 = setup("/player/pSStaff_up_2", gp.tileSize, gp.tileSize * 2);
-			attackDown1 = setup("/player/pSStaff_down_1", gp.tileSize, gp.tileSize * 2);
-			attackDown2 = setup("/player/pSStaff_down_2", gp.tileSize, gp.tileSize * 2);
-			attackLeft1 = setup("/player/pSStaff_left_1", gp.tileSize * 2, gp.tileSize);
-			attackLeft2 = setup("/player/pSStaff_left_2", gp.tileSize * 2, gp.tileSize);
-			attackRight1 = setup("/player/pSStaff_right_1", gp.tileSize * 2, gp.tileSize);
-			attackRight2 = setup("/player/pSStaff_right_2", gp.tileSize * 2, gp.tileSize);
-		}
+		if (currentWeapon instanceof OBJ_Staff) {
+	        OBJ_Staff staff = (OBJ_Staff) currentWeapon;
+	        attackUp1 = staff.attackUp1;
+	        attackUp2 = staff.attackUp2;
+	        attackDown1 = staff.attackDown1;
+	        attackDown2 = staff.attackDown2;
+	        attackLeft1 = staff.attackLeft1;
+	        attackLeft2 = staff.attackLeft2;
+	        attackRight1 = staff.attackRight1;
+	        attackRight2 = staff.attackRight2;
+	    }
 	}
 
 	public void update() {
