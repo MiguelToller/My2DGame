@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.Rectangle;
-
 public class EventHandler {
 
 	GamePanel gp;
