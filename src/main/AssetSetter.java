@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Merchant;
 import entity.NPC_Shepheard;
 import monster.MON_GreenSlime;
 import object.OBJ_Axe;
@@ -86,17 +87,22 @@ public class AssetSetter {
 	public void setNPC() {
 
 		int mapNum = 0;
+		int i = 0;
 		
 		// MAP 0
-		gp.npc[mapNum][0] = new NPC_Shepheard(gp);
-		gp.npc[mapNum][0].worldX = gp.tileSize * 21;
-		gp.npc[mapNum][0].worldY = gp.tileSize * 21;
+		gp.npc[mapNum][i] = new NPC_Shepheard(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize * 21;
+		gp.npc[mapNum][i].worldY = gp.tileSize * 21;
+		i++;
 		
 		// MAP 1
 		mapNum = 1;
-		gp.npc[mapNum][0] = new NPC_Shepheard(gp);
-		gp.npc[mapNum][0].worldX = gp.tileSize * 12;
-		gp.npc[mapNum][0].worldY = gp.tileSize * 7;
+		i = 0;
+		
+		gp.npc[mapNum][i] = new NPC_Merchant(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+		gp.npc[mapNum][i].worldY = gp.tileSize * 7;
+		i++;
 	}
 	
 	public void setMonster() {
