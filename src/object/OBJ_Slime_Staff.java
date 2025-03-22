@@ -17,6 +17,7 @@ public class OBJ_Slime_Staff extends OBJ_Staff {
 		name = "Slime Staff";
 		down1 = setup("/objects/slime_staff", gp.tileSize, gp.tileSize);
 		description = "[Slime Staff]\nA rare drop from slimes.";
+		
 		loadSprites("/player/pSStaff");
 	}
 	
@@ -28,8 +29,13 @@ public class OBJ_Slime_Staff extends OBJ_Staff {
 			OBJ_Rock newProjectile = new OBJ_Rock(gp);
 			newProjectile.set(entity.worldX, entity.worldY, entity.direction, true, entity);
 			
-			newProjectile.set(entity.worldX, entity.worldY, entity.direction, true, entity);
-            gp.projectileList.add(newProjectile);
+            for (int i = 0; i < gp.projectile[gp.currentMap].length; i++) {
+                if (gp.projectile[gp.currentMap][i] == null) {
+                    gp.projectile[gp.currentMap][i] = newProjectile;
+                    break;
+                }
+            }
+			
             newProjectile.subtractResource(entity);
             shotAvailableCounter = 0;
             gp.playSE(9);

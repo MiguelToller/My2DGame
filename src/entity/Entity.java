@@ -42,6 +42,7 @@ public class Entity {
 	public boolean dying = false;
 	boolean hpBarOn = false;
 	public boolean onPath = false;
+	public boolean knockBack = false;
 	
 	// COUNTER
 	public int spriteCounter = 0;
@@ -50,9 +51,11 @@ public class Entity {
 	public int shotAvailableCounter = 20;
 	int dyingCounter = 0;
 	int hpBarCounter = 0;
+	int knockBackCounter = 0;
 	
 	// CHARACTER ATTRIBUTES 
 	public String name;
+	public int defaultSpeed;
 	public int speed;
 	public int maxLife;
 	public int life;
@@ -80,6 +83,7 @@ public class Entity {
 	public String description = "";
 	public int useCost; // projectile cost
 	public int price;
+	public int knockBackPower = 0;
 
 	// TYPE
 	public int type;
@@ -192,48 +196,68 @@ public class Entity {
 	}
 	
 	public void update() {
+	    
+	    applyKnockback();
 
-		setAction();
-		checkCollision();
+	    if (!knockBack) {
+	        setAction();
+	        checkCollision();
+
+	        if (!collisionOn) {
+	            switch (direction) {
+	                case "up": worldY -= speed; break;
+	                case "down": worldY += speed; break;
+	                case "left": worldX -= speed; break;
+	                case "right": worldX += speed; break;
+	            }
+	        }
+	    }
+
+	    if (invincible) {
+	        invincibleCounter++;
+	        if (invincibleCounter > 40) {
+	            invincible = false;
+	            invincibleCounter = 0;
+	        }
+	    }
+
+	    spriteCounter++;
+	    if (spriteCounter > 24) {
+	        spriteNum = (spriteNum == 1) ? 2 : 1;
+	        spriteCounter = 0;
+	    }
+	}
+	
+	public void applyKnockback() {
 		
-		// IF COLLISION IS FALSE, PLAYER CAN MOVE
-		if (collisionOn == false) {
+	    if (knockBack) {
+	        int dx = worldX - gp.player.worldX;
+	        int dy = worldY - gp.player.worldY;
 
-			switch (direction) {
-			case "up":
-				worldY -= speed;
-				break;
-			case "down":
-				worldY += speed;
-				break;
-			case "left":
-				worldX -= speed;
-				break;
-			case "right":
-				worldX += speed;
-				break;
-			}
-		}
-			
-		// Monster invincible time
-		if (invincible == true) {
-			invincibleCounter++;
-			if (invincibleCounter > 40) {
-				invincible = false;
-				invincibleCounter = 0;
-				
-			}
-		}
+	        if (Math.abs(dx) > Math.abs(dy)) {
+	            direction = (dx > 0) ? "right" : "left";
+	        } else {
+	            direction = (dy > 0) ? "down" : "up";
+	        }
 
-		spriteCounter++;
+	        checkCollision();
 
-		if (spriteCounter > 24) {
-			if (spriteNum == 1)
-				spriteNum = 2;
-			else if (spriteNum == 2)
-				spriteNum = 1;
-			spriteCounter = 0;
-		}
+	        if (!collisionOn) {
+	            switch(direction) {
+	                case "up": worldY -= speed; break;
+	                case "down": worldY += speed; break;
+	                case "left": worldX -= speed; break;
+	                case "right": worldX += speed; break;
+	            }
+	        }
+
+	        knockBackCounter++;
+	        if (knockBackCounter == 5) {
+	            knockBack = false;
+	            speed = defaultSpeed;
+	            knockBackCounter = 0;
+	        }
+	    }
 	}
 	
 	public void damagePlayer(int attack) {

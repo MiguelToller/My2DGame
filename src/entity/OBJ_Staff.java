@@ -24,7 +24,14 @@ public class OBJ_Staff extends Entity {
         	
         	Projectile newProjectile = createProjectile();
         	newProjectile.set(user.worldX, user.worldY, user.direction, true, user);
-            gp.projectileList.add(newProjectile);
+        	
+            for (int i = 0; i < gp.projectile[gp.currentMap].length; i++) {
+                if (gp.projectile[gp.currentMap][i] == null) {
+                    gp.projectile[gp.currentMap][i] = newProjectile;
+                    break;
+                }
+            }
+        	
             projectile.subtractResource(user);
         } else {
         	user.attacking = false;
