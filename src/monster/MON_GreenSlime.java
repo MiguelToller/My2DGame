@@ -86,7 +86,7 @@ public class MON_GreenSlime extends Entity {
 			
 			// ROCK -- EXPERIMENTAL 50
 			int i = new Random().nextInt(200)+1;
-			if(i > 197 && projectile.alive == false && shotAvailableCounter == 50) {
+			if(i > 197 && projectile.alive == false && shotAvailableCounter == 49) {
 				
 				OBJ_Rock newProjectile = new OBJ_Rock(gp);
 				newProjectile.set(worldX, worldY, direction, true, this);

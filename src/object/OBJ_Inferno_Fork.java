@@ -14,14 +14,14 @@ public class OBJ_Inferno_Fork extends OBJ_Staff {
 		
 		projectile = new OBJ_Fireball(gp);
 		type = type_staff;
-		name = "Fire Staff";
+		name = "Inferno Fork";
 		down1 = setup("/objects/inferno_fork", gp.tileSize, gp.tileSize);
 		description = "[Inferno Fork]\nHellfire.";
 		
 		loadSprites("/player/pIFork");
 	}
 	
-	public void use(Entity entity) {
+	public boolean use(Entity entity) {
 		
         // SET DEFAULT COORDINATES, DIRECTION AND USER
 		if(shotAvailableCounter >= 20) {
@@ -39,8 +39,11 @@ public class OBJ_Inferno_Fork extends OBJ_Staff {
             newProjectile.subtractResource(entity);
             shotAvailableCounter = 0;
             gp.playSE(9);
+            
+            return true;
 		}
 		  if (shotAvailableCounter < 20) 
 			  shotAvailableCounter++;
+		  return false;
 	}
 }

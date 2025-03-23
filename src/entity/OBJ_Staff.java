@@ -18,7 +18,7 @@ public class OBJ_Staff extends Entity {
     	return new Projectile(gp);
     }
 
-    public void use(Entity user) {
+    public boolean use(Entity user) {
     	
         if (projectile != null && projectile.haveResource(user)) {
         	
@@ -31,10 +31,11 @@ public class OBJ_Staff extends Entity {
                     break;
                 }
             }
-        	
             projectile.subtractResource(user);
+            return true;
         } else {
         	user.attacking = false;
+        	return false;
         }
     }
     

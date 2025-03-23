@@ -96,14 +96,34 @@ public class Entity {
 	public final int type_consumable = 6;
 	public final int type_pickupOnly = 7;
 	public final int type_staff = 8;
+	public final int type_obstacle = 9;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
 	}
+	
+	public int getLeftX() {
+		return worldX + solidArea.x;
+	}
+	public int getRightX() {
+		return worldX + solidArea.x + solidArea.width;
+	}
+	public int getTopY() {
+		return worldY + solidArea.y;
+	}
+	public int getBottomY() {
+		return worldY + solidArea.y + solidArea.height;
+	}
+	public int getCol() {
+		return (worldX + solidArea.x) / gp.tileSize;
+	}
+	public int getRow() {
+		return (worldY + solidArea.y) / gp.tileSize;
+	}
 
 	public void setAction() {}
 	public void damageReaction() {}
-	public void use(Entity entity) {}
+	public boolean use(Entity entity) {return false;}
 	public void checkDrop() {}
 	
 	public void dropItem(Entity droppedItem) {
@@ -141,6 +161,8 @@ public class Entity {
 			break;
 		}
 	}
+	
+	public void interact() {}
 
 	public Color getParticleColor() {
 		Color color = null;
@@ -453,5 +475,36 @@ public class Entity {
 //		if (nextCol == goalCol && nextRow == goalRow) {
 //			onPath = false;
 //		}
+	}
+	
+	public int getDetected(Entity user, Entity target[][], String targetName) {
+		
+		int index = 999;
+		
+		// Check the surrounding object
+		int nextWorldX = user.getLeftX();
+		int nextWorldY = user.getTopY();
+		
+		switch(user.direction) {
+		case "up": nextWorldY = user.getTopY()-user.speed; break; // change 1 to user.speed
+		case "down": nextWorldY = user.getBottomY()+user.speed; break;
+		case "left": nextWorldX = user.getLeftX()-user.speed; break;  
+		case "right": nextWorldX = user.getRightX()+user.speed; break;
+		}
+		int col = nextWorldX / gp.tileSize;
+		int row = nextWorldY / gp.tileSize;
+		
+		for(int i = 0; i < target[1].length; i++) {
+			if (target[gp.currentMap][i] != null) {
+				if (target[gp.currentMap][i].getCol() == col && 
+						target[gp.currentMap][i].getRow() == row &&
+						target[gp.currentMap][i].name.equals(targetName)) {
+					
+					index = i;
+					break;
+				}
+			}
+		}
+		return index;
 	}
 }

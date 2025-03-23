@@ -21,7 +21,7 @@ public class OBJ_Slime_Staff extends OBJ_Staff {
 		loadSprites("/player/pSStaff");
 	}
 	
-	public void use(Entity entity) {
+	public boolean use(Entity entity) {
 		
         // SET DEFAULT COORDINATES, DIRECTION AND USER
 		if(shotAvailableCounter >= 20) {
@@ -39,8 +39,11 @@ public class OBJ_Slime_Staff extends OBJ_Staff {
             newProjectile.subtractResource(entity);
             shotAvailableCounter = 0;
             gp.playSE(9);
+            
+            return true;
 		}
 		  if (shotAvailableCounter < 20) 
 			  shotAvailableCounter++;
+		  return false;
 	}
 }

@@ -4,10 +4,10 @@ import entity.NPC_Merchant;
 import entity.NPC_Shepheard;
 import monster.MON_GreenSlime;
 import object.OBJ_Axe;
-import object.OBJ_Coin_Bronze;
+import object.OBJ_Chest;
 import object.OBJ_Door;
-import object.OBJ_Inferno_Fork;
 import object.OBJ_Heart;
+import object.OBJ_Inferno_Fork;
 import object.OBJ_Key;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
@@ -38,14 +38,9 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = gp.tileSize*19;
 		i++;
 		
-		gp.obj[mapNum][i] = new	OBJ_Coin_Bronze(gp);
-		gp.obj[mapNum][i].worldX = gp.tileSize*25;
-		gp.obj[mapNum][i].worldY = gp.tileSize*23;
-		i++;
-		
-		gp.obj[mapNum][i] = new	OBJ_Coin_Bronze(gp);
-		gp.obj[mapNum][i].worldX = gp.tileSize*26;
-		gp.obj[mapNum][i].worldY = gp.tileSize*21;
+		gp.obj[mapNum][i] = new	OBJ_Chest(gp, new OBJ_Inferno_Fork(gp));
+		gp.obj[mapNum][i].worldX = gp.tileSize*29;
+		gp.obj[mapNum][i].worldY = gp.tileSize*25;
 		i++;
 		
 		gp.obj[mapNum][i] = new	OBJ_Axe(gp);
@@ -58,11 +53,6 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = gp.tileSize*21;
 		i++;
 		
-		gp.obj[mapNum][i] = new	OBJ_Inferno_Fork(gp);
-		gp.obj[mapNum][i].worldX = gp.tileSize*31;
-		gp.obj[mapNum][i].worldY = gp.tileSize*21;
-		i++;
-		
 		gp.obj[mapNum][i] = new	OBJ_Shield_Blue(gp);
 		gp.obj[mapNum][i].worldX = gp.tileSize*35;
 		gp.obj[mapNum][i].worldY = gp.tileSize*21;
@@ -71,16 +61,6 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new	OBJ_Potion_Red(gp);
 		gp.obj[mapNum][i].worldX = gp.tileSize*22;
 		gp.obj[mapNum][i].worldY = gp.tileSize*27;
-		i++;
-		
-		gp.obj[mapNum][i] = new	OBJ_Heart(gp);
-		gp.obj[mapNum][i].worldX = gp.tileSize*22;
-		gp.obj[mapNum][i].worldY = gp.tileSize*29;
-		i++;
-		
-		gp.obj[mapNum][i] = new	OBJ_ManaCrystal(gp);
-		gp.obj[mapNum][i].worldX = gp.tileSize*22;
-		gp.obj[mapNum][i].worldY = gp.tileSize*31;
 		i++;
 	}
 
@@ -153,5 +133,12 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_DryTree(gp, 13, 36); i++;
 		gp.iTile[mapNum][i] = new IT_DryTree(gp, 13, 37); i++;
 		gp.iTile[mapNum][i] = new IT_DryTree(gp, 13, 38); i++;
+		
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 25, 27); i++;
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 26, 27); i++;
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 27); i++;
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 28, 27); i++;
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 27); i++;
+		gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 26); i++;
 	}
 }
