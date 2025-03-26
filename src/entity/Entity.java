@@ -84,6 +84,8 @@ public class Entity {
 	public int useCost; // projectile cost
 	public int price;
 	public int knockBackPower = 0;
+	public boolean stackable = false;
+	public int amount = 1;
 
 	// TYPE
 	public int type;
