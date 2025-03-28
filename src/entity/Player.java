@@ -17,6 +17,7 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public boolean attackCanceled = false;
+	public boolean lightUpdated = false;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -513,6 +514,15 @@ public class Player extends Entity {
 			if(selectedItem.type == type_staff) {
 				currentWeapon = selectedItem;
 				getPlayerAttackImage();
+			}
+			if(selectedItem.type == type_light) {
+				if(currentLight == selectedItem) {
+					currentLight = null;
+				}
+				else {
+					currentLight = selectedItem;
+				}
+				lightUpdated = true;
 			}
 		}
 	}

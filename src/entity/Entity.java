@@ -72,6 +72,7 @@ public class Entity {
 	public int coin;
 	public Entity currentWeapon;
 	public Entity currentShield;
+	public Entity currentLight;
 	public Projectile projectile;
 	
 	// ITEM ATTRIBUTES
@@ -86,6 +87,7 @@ public class Entity {
 	public int knockBackPower = 0;
 	public boolean stackable = false;
 	public int amount = 1;
+	public int lightRadius;
 
 	// TYPE
 	public int type;
@@ -99,6 +101,7 @@ public class Entity {
 	public final int type_pickupOnly = 7;
 	public final int type_staff = 8;
 	public final int type_obstacle = 9;
+	public final int type_light = 10;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
