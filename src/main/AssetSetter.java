@@ -11,6 +11,7 @@ import object.OBJ_Lantern;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Blue;
 import object.OBJ_Slime_Staff;
+import object.OBJ_Tent;
 import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
@@ -38,6 +39,11 @@ public class AssetSetter {
 		
 		gp.obj[mapNum][i] = new	OBJ_Lantern(gp);
 		gp.obj[mapNum][i].worldX = gp.tileSize*18;
+		gp.obj[mapNum][i].worldY = gp.tileSize*20;
+		i++;
+		
+		gp.obj[mapNum][i] = new	OBJ_Tent(gp);
+		gp.obj[mapNum][i].worldX = gp.tileSize*17;
 		gp.obj[mapNum][i].worldY = gp.tileSize*20;
 		i++;
 		

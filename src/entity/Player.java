@@ -121,6 +121,21 @@ public class Player extends Entity {
 		right2 = setup("/player/player_right_2", gp.tileSize, gp.tileSize);
 		right3 = setup("/player/player_right_3", gp.tileSize, gp.tileSize);
 	}
+	
+	public void getSleepImage(BufferedImage image) {
+		up1 = image;
+		up2 = image;
+		up3 = image;
+		down1 = image;
+		down2 = image;
+		down3 = image;
+		left1 = image;
+		left2 = image;
+		left3 = image;
+		right1 = image;
+		right2 = image;
+		right3 = image;
+	}
 
 	public void getPlayerAttackImage() {
 		
