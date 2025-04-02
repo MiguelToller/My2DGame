@@ -7,7 +7,7 @@ import main.GamePanel;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
-import object.OBJ_Rock;
+import object.OBJ_Orcish_Club;
 import object.OBJ_Slime_Staff;
 
 public class MON_Orc extends Entity {
@@ -103,20 +103,20 @@ public class MON_Orc extends Entity {
 	public void checkDrop() {
 		
 		// CAST A DIE
-		int i = new Random().nextInt(120)+1;
+		int i = new Random().nextInt(100)+1;
 		
 		// SET THE MONSTER DROP
-		if(i < 50) {
-			dropItem(new OBJ_Coin_Bronze(gp));
-		}
-		if(i >= 50 && i < 75) {
-			dropItem(new OBJ_Heart(gp));
-		}
-		if(i >= 75 && i < 100) {
-			dropItem(new OBJ_ManaCrystal(gp));
-		}
-		if (i >= 100 && i < 120) {
-			dropItem(new OBJ_Slime_Staff(gp));
+//		if(i < 50) {
+//			dropItem(new OBJ_Coin_Bronze(gp));
+//		}
+//		if(i >= 50 && i < 75) {
+//			dropItem(new OBJ_Heart(gp));
+//		}
+//		if(i >= 75 && i < 100) {
+//			dropItem(new OBJ_ManaCrystal(gp));
+//		}
+		if (i >= 0 && i < 100) {
+			dropItem(new OBJ_Orcish_Club(gp));
 		}
 	}
 }

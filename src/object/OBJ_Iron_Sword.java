@@ -1,9 +1,9 @@
 package object;
 
-import entity.Entity;
+import entity.OBJ_Sword;
 import main.GamePanel;
 
-public class OBJ_Iron_Sword extends Entity {
+public class OBJ_Iron_Sword extends OBJ_Sword {
 
 	public OBJ_Iron_Sword(GamePanel gp) {
 		super(gp);
@@ -18,7 +18,7 @@ public class OBJ_Iron_Sword extends Entity {
 		knockBackPower = 2;
 		motion1_duration = 10;
 		motion2_duration = 25;
+		
+		loadSprites("/player/pAttack");
 	}
-	
-
 }

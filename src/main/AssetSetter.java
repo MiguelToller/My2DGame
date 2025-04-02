@@ -10,6 +10,7 @@ import object.OBJ_Door;
 import object.OBJ_Inferno_Fork;
 import object.OBJ_Key;
 import object.OBJ_Lantern;
+import object.OBJ_Orcish_Club;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Blue;
 import object.OBJ_Slime_Staff;
@@ -52,6 +53,11 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new	OBJ_Chest(gp, new OBJ_Inferno_Fork(gp));
 		gp.obj[mapNum][i].worldX = gp.tileSize*30;
 		gp.obj[mapNum][i].worldY = gp.tileSize*29;
+		i++;
+		
+		gp.obj[mapNum][i] = new	OBJ_Chest(gp, new OBJ_Orcish_Club(gp));
+		gp.obj[mapNum][i].worldX = gp.tileSize*26;
+		gp.obj[mapNum][i].worldY = gp.tileSize*20;
 		i++;
 		
 		gp.obj[mapNum][i] = new	OBJ_Axe(gp);

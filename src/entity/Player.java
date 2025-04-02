@@ -139,16 +139,17 @@ public class Player extends Entity {
 
 	public void getAttackImage() {
 		
-		if(currentWeapon.type == type_sword) {
-			attackUp1 = setup("/player/pAttack_up_1", gp.tileSize, gp.tileSize * 2);
-			attackUp2 = setup("/player/pAttack_up_2", gp.tileSize, gp.tileSize * 2);
-			attackDown1 = setup("/player/pAttack_down_1", gp.tileSize, gp.tileSize * 2);
-			attackDown2 = setup("/player/pAttack_down_2", gp.tileSize, gp.tileSize * 2);
-			attackLeft1 = setup("/player/pAttack_left_1", gp.tileSize * 2, gp.tileSize);
-			attackLeft2 = setup("/player/pAttack_left_2", gp.tileSize * 2, gp.tileSize);
-			attackRight1 = setup("/player/pAttack_right_1", gp.tileSize * 2, gp.tileSize);
-			attackRight2 = setup("/player/pAttack_right_2", gp.tileSize * 2, gp.tileSize);
-		}
+		if (currentWeapon instanceof OBJ_Sword) {
+	        OBJ_Sword sword = (OBJ_Sword) currentWeapon;
+	        attackUp1 = sword.attackUp1;
+	        attackUp2 = sword.attackUp2;
+	        attackDown1 = sword.attackDown1;
+	        attackDown2 = sword.attackDown2;
+	        attackLeft1 = sword.attackLeft1;
+	        attackLeft2 = sword.attackLeft2;
+	        attackRight1 = sword.attackRight1;
+	        attackRight2 = sword.attackRight2;
+	    }
 		
 		if(currentWeapon.type == type_axe) {
 			attackUp1 = setup("/player/pAxe_up_1", gp.tileSize, gp.tileSize * 2);
