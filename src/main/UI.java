@@ -303,6 +303,9 @@ public class UI {
 	}
 
 	public void drawDialogueScreen() {
+		
+		if(currentDialogue == null) 
+			return;
 
 		// WINDOW
 		int x = gp.tileSize * 3;
@@ -781,6 +784,7 @@ public class UI {
 				titleScreenState = 0;
 				gp.gameState = gp.titleState;
 				gp.stopMusic();
+				gp.resetGame(true);
 			}
 		}
 		

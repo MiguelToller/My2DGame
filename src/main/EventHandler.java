@@ -54,8 +54,8 @@ public class EventHandler {
 
 		if (canTouchEvent == true) {
 			
-			if (hit(0, 23, 14, "any") == true) {damagePit(gp.dialogueState);}
-			else if (hit(0, 23, 12, "up") == true) {healingPool(gp.dialogueState);}
+			//if (hit(0, 23, 14, "any") == true) {damagePit(gp.dialogueState);}
+			if (hit(0, 23, 12, "up") == true) {healingPool(gp.dialogueState);}
 			else if (hit(0, 10, 39, "any") == true) {teleport(1, 12, 12);}
 			else if (hit(1, 12, 13, "any") == true) {teleport(0, 10, 39);}
 			else if (hit(1, 12, 9, "up") == true) {speak(gp.npc[1][0]);}
@@ -119,10 +119,12 @@ public class EventHandler {
 			gp.gameState = gameState;
 			gp.player.attackCanceled = true;
 			gp.playSE(2);
-			gp.ui.currentDialogue = "You drink the water.\nYour life and mana have been recovered.";
+			gp.ui.currentDialogue = "You drink the water.\nYour life and mana have been recovered.\n"
+					+ "(The progress has been saved)";
 			gp.player.life = gp.player.maxLife;
 			gp.player.mana = gp.player.maxMana;
 			gp.aSetter.setMonster();
+			gp.saveLoad.save();
 		}
 	}
 	

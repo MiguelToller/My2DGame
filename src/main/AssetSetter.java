@@ -50,12 +50,14 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = gp.tileSize*20;
 		i++;
 		
-		gp.obj[mapNum][i] = new	OBJ_Chest(gp, new OBJ_Inferno_Fork(gp));
+		gp.obj[mapNum][i] = new	OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Inferno_Fork(gp));
 		gp.obj[mapNum][i].worldX = gp.tileSize*30;
 		gp.obj[mapNum][i].worldY = gp.tileSize*29;
 		i++;
 		
-		gp.obj[mapNum][i] = new	OBJ_Chest(gp, new OBJ_Orcish_Club(gp));
+		gp.obj[mapNum][i] = new	OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Orcish_Club(gp));
 		gp.obj[mapNum][i].worldX = gp.tileSize*26;
 		gp.obj[mapNum][i].worldY = gp.tileSize*20;
 		i++;
