@@ -11,7 +11,7 @@ public class OBJ_Iron_Sword extends OBJ_Sword {
 		type = type_sword;
 		name = "Iron Sword";
 		down1 = setup("/objects/iron_sword", gp.tileSize, gp.tileSize);
-		attackValue = 1;
+		attackValue = 2;
 		attackArea.width = 36;
 		attackArea.height = 36;
 		description = "[" + name + "]\nAn old sword.";

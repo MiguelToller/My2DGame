@@ -8,6 +8,7 @@ import object.OBJ_Axe;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Inferno_Fork;
+import object.OBJ_Iron_Dagger;
 import object.OBJ_Key;
 import object.OBJ_Lantern;
 import object.OBJ_Orcish_Club;
@@ -64,6 +65,11 @@ public class AssetSetter {
 		
 		gp.obj[mapNum][i] = new	OBJ_Axe(gp);
 		gp.obj[mapNum][i].worldX = gp.tileSize*31;
+		gp.obj[mapNum][i].worldY = gp.tileSize*21;
+		i++;
+		
+		gp.obj[mapNum][i] = new	OBJ_Iron_Dagger(gp);
+		gp.obj[mapNum][i].worldX = gp.tileSize*32;
 		gp.obj[mapNum][i].worldY = gp.tileSize*21;
 		i++;
 		

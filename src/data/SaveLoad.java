@@ -41,6 +41,7 @@ public class SaveLoad {
 		case "Boots": obj = new OBJ_Boots(gp); break;
 		case "Inferno Fork": obj = new OBJ_Inferno_Fork(gp); break;
 		case "Iron Sword": obj = new OBJ_Iron_Sword(gp); break;
+		case "Iron Dagger": obj = new OBJ_Iron_Sword(gp); break;
 		case "Key": obj = new OBJ_Key(gp); break;
 		case "Lantern": obj = new OBJ_Lantern(gp); break;
 		case "Orcish Club": obj = new OBJ_Orcish_Club(gp); break;
