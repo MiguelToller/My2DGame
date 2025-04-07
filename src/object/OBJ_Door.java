@@ -24,10 +24,13 @@ public class OBJ_Door extends Entity {
 		solidAreaDefaultY = solidArea.y;
 	}
 	
+	public void setDialogue() {
+		
+		dialogues[0][0] = "The lock refuses to yield. You must find a key.";
+	}
+	
 	public void interact() {
 		
-		gp.gameState = gp.dialogueState;
-		gp.ui.currentDialogue = "The lock refuses to yield. You must find a key.";
+		startDialogue(this, 0);
 	}
-
 }

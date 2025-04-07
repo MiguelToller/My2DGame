@@ -17,22 +17,28 @@ public class OBJ_Key extends Entity {
 		description = "[" + name + "]\nIt unlocks something.";
 		price = 500;
 		stackable = true;
+		
+		setDialogue();
+	}
+	
+	public void setDialogue() {
+		
+		dialogues[0][0] = "The " + name + " turns with a soft click. The door is now open.";
+		dialogues[1][0] = "What are you doing?";
 	}
 	
 	public boolean use(Entity entity) {
 		
-		gp.gameState = gp.dialogueState;
-		
 		int objIndex = getDetected(entity, gp.obj, "Door");
 		
 		if (objIndex != 999) {
-			gp.ui.currentDialogue = "The " + name + " turns with a soft click. The door is now open.";
+			startDialogue(this, 0);
 			gp.playSE(2);
 			gp.obj[gp.currentMap][objIndex] = null;
 			return true;
 		}
 		else {
-			gp.ui.currentDialogue = "What are you doing?";
+			startDialogue(this, 1);
 			return false;
 		}
 	}

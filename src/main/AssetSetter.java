@@ -63,6 +63,12 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = gp.tileSize*20;
 		i++;
 		
+		gp.obj[mapNum][i] = new	OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Inferno_Fork(gp));
+		gp.obj[mapNum][i].worldX = gp.tileSize*27;
+		gp.obj[mapNum][i].worldY = gp.tileSize*20;
+		i++;
+		
 		gp.obj[mapNum][i] = new	OBJ_Axe(gp);
 		gp.obj[mapNum][i].worldX = gp.tileSize*31;
 		gp.obj[mapNum][i].worldY = gp.tileSize*21;

@@ -11,6 +11,8 @@ public class NPC_Shepheard extends Entity {
 
 		direction = "down";
 		speed = 1;
+		
+		dialogueSet = -1;
 
 		getImage();
 		setDialogue();
@@ -30,10 +32,16 @@ public class NPC_Shepheard extends Entity {
 
 	public void setDialogue() {
 
-		dialogues[0] = "Hello, lad.";
-		dialogues[1] = "So you've come to this island to \nfind the treasure?";
-		dialogues[2] = "I'm a bit too old for taking an adventure.";
-		dialogues[3] = "Well, good luck on you.";
+		dialogues[0][0] = "Hello, lad.";
+		dialogues[0][1] = "So you've come to this island to \nfind the treasure?";
+		dialogues[0][2] = "I'm a bit too old for taking an adventure.";
+		dialogues[0][3] = "Well, good luck on you.";
+		
+		dialogues[1][0] = "If you become tired, rest at the water.";
+		dialogues[1][1] = "However, the monsters reapper if you rest.\nI don't know why but that's how it works.";
+		dialogues[1][2] = "In any case, don't push yourself too hard.";
+		
+		dialogues[2][0] = "I wonder how to open that door...";
 	}
 
 	public void setAction() {
@@ -73,11 +81,17 @@ public class NPC_Shepheard extends Entity {
 
 	public void speak() {
 		
-		// Do this character specific stuff
-
-		super.speak();
+		facePlayer();
+		startDialogue(this, dialogueSet);
 		
-//		onPath = true;
+		dialogueSet++;
+		
+		if(dialogues[dialogueSet][0] == null) {
+			dialogueSet--;
+		}
+		
+//		if(gp.player.life < gp.player.maxLife/3) {
+//			dialogueSet = 1;
+//		}
 	}	
-
 }
