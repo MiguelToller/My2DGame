@@ -4,12 +4,14 @@ import entity.OBJ_Sword;
 import main.GamePanel;
 
 public class OBJ_Orcish_Club extends OBJ_Sword {
+	
+	public static final String objName = "Orcish Club";
 
 	public OBJ_Orcish_Club(GamePanel gp) {
 		super(gp);
 		
 		type = type_sword;
-		name = "Orcish Club";
+		name = objName;
 		down1 = setup("/objects/orcish_club", gp.tileSize, gp.tileSize);
 		attackValue = 4;
 		attackArea.width = 40;

@@ -6,6 +6,8 @@ import main.GamePanel;
 
 public class OBJ_Slime_Staff extends OBJ_Staff {
 	
+	public static final String objName = "Slime Staff";
+	
 	GamePanel gp;
 
 	public OBJ_Slime_Staff(GamePanel gp) {
@@ -14,9 +16,11 @@ public class OBJ_Slime_Staff extends OBJ_Staff {
 		
 		projectile = new OBJ_Rock(gp);
 		type = type_staff;
-		name = "Slime Staff";
+		name = objName;
 		down1 = setup("/objects/slime_staff", gp.tileSize, gp.tileSize);
 		description = "[Slime Staff]\nA rare drop from slimes.";
+		motion1_duration = 10;
+		motion2_duration = 25;
 		
 		loadSprites("/player/pSStaff");
 	}

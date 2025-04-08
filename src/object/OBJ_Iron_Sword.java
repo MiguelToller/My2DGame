@@ -4,12 +4,14 @@ import entity.OBJ_Sword;
 import main.GamePanel;
 
 public class OBJ_Iron_Sword extends OBJ_Sword {
+	
+	public static final String objName = "Iron Sword";
 
 	public OBJ_Iron_Sword(GamePanel gp) {
 		super(gp);
 		
 		type = type_sword;
-		name = "Iron Sword";
+		name = objName;
 		down1 = setup("/objects/iron_sword", gp.tileSize, gp.tileSize);
 		attackValue = 2;
 		attackArea.width = 36;

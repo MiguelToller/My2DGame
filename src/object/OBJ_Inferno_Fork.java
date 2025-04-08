@@ -6,6 +6,8 @@ import main.GamePanel;
 
 public class OBJ_Inferno_Fork extends OBJ_Staff {
 	
+	public static final String objName = "Inferno Fork";
+	
 	GamePanel gp;
 
 	public OBJ_Inferno_Fork(GamePanel gp) {
@@ -14,9 +16,11 @@ public class OBJ_Inferno_Fork extends OBJ_Staff {
 		
 		projectile = new OBJ_Fireball(gp);
 		type = type_staff;
-		name = "Inferno Fork";
+		name = objName;
 		down1 = setup("/objects/inferno_fork", gp.tileSize, gp.tileSize);
 		description = "[Inferno Fork]\nHellfire.";
+		motion1_duration = 10;
+		motion2_duration = 25;
 		
 		loadSprites("/player/pIFork");
 	}

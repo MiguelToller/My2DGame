@@ -5,11 +5,13 @@ import main.GamePanel;
 
 public class OBJ_Iron_Dagger extends OBJ_Sword{
 	
+	public static final String objName = "Iron Dagger";
+	
 	public OBJ_Iron_Dagger(GamePanel gp) {
 		super(gp);
 		
 		type = type_sword;
-		name = "Iron Dagger";
+		name = objName;
 		down1 = setup("/objects/iron_dagger", gp.tileSize, gp.tileSize);
 		attackValue = 1;
 		attackArea.width = 26;

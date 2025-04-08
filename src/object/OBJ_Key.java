@@ -4,6 +4,8 @@ import entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Key extends Entity {
+	
+	public static final String objName = "Key";
 
 	GamePanel gp;
 	
@@ -12,7 +14,7 @@ public class OBJ_Key extends Entity {
 		this.gp = gp;
 
 		type = type_consumable;
-		name = "Key";
+		name = objName;
 		down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
 		description = "[" + name + "]\nIt unlocks something.";
 		price = 500;
