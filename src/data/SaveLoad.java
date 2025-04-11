@@ -6,23 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Axe;
-import object.OBJ_Boots;
-import object.OBJ_Chest;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Door;
-import object.OBJ_Inferno_Fork;
-import object.OBJ_Iron_Sword;
-import object.OBJ_Key;
-import object.OBJ_Lantern;
-import object.OBJ_Orcish_Club;
-import object.OBJ_Potion_Red;
-import object.OBJ_Shield_Blue;
-import object.OBJ_Shield_Wood;
-import object.OBJ_Slime_Staff;
-import object.OBJ_Tent;
 
 public class SaveLoad {
 	
@@ -138,7 +122,7 @@ public class SaveLoad {
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
 						if(ds.mapObjectLootNames[mapNum][i] != null) {
-							gp.obj[mapNum][i].loot = gp.eGenerator.getObject(ds.mapObjectNames[mapNum][i]);
+							gp.obj[mapNum][i].setLoot(gp.eGenerator.getObject(ds.mapObjectNames[mapNum][i]));
 						}
 						gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];
 						if(gp.obj[mapNum][i].opened == true) {
