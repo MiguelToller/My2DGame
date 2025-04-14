@@ -2,9 +2,11 @@ package monster;
 
 import java.util.Random;
 
+import data.Progress;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Coin_Bronze;
+import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Orcish_Club;
@@ -30,6 +32,7 @@ public class MON_SkeletonLord extends Entity {
 		defense = 2;
 		exp = 50;
 		knockBackPower = 5;
+		sleep = true;
 
 		int size = gp.tileSize*5;
 		solidArea.x = 64;
@@ -45,6 +48,7 @@ public class MON_SkeletonLord extends Entity {
 
 		getImage();
 		getAttackImage();
+		setDialogue();
 	}
 
 	public void getImage() {
@@ -99,6 +103,13 @@ public class MON_SkeletonLord extends Entity {
 		}
 	}
 	
+	public void setDialogue() {
+		
+		dialogues[0][0] = "No one can steal my treasure!";
+		dialogues[0][1] = "You will die here!";
+		dialogues[0][2] = "WELCOME TO YOUR DOOM!";
+	}
+	
 	public void setAction() {
 		
 		if(inRage == false && life < maxLife/2) {
@@ -128,6 +139,22 @@ public class MON_SkeletonLord extends Entity {
 	}
 
 	public void checkDrop() {
+		
+		gp.bossBattleOn = false;
+		Progress.skeletonLordDefeated = true;
+		
+		// Restore the previous music
+		gp.stopMusic();
+		gp.playSE(18);
+		
+		// Remove the iron doors
+		for(int i = 0; i < gp.obj[1].length; i++) {
+			if (gp.obj[gp.currentMap][i] != null && 
+					gp.obj[gp.currentMap][i].name.equals(OBJ_Door_Iron.objName)) {
+				gp.playSE(20);
+				gp.obj[gp.currentMap][i] = null;
+			}
+		}
 		
 		// CAST A DIE
 		int i = new Random().nextInt(100)+1;

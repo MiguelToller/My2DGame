@@ -380,9 +380,6 @@ public class UI {
 
 	public void drawDialogueScreen() {
 		
-		if(currentDialogue == null) 
-			return;
-
 		// WINDOW
 		int x = gp.tileSize * 3;
 		int y = gp.tileSize / 2;
@@ -415,7 +412,7 @@ public class UI {
 				charIndex = 0;
 				combinedText = "";
 				
-				if(gp.gameState == gp.dialogueState) {
+				if(gp.gameState == gp.dialogueState || gp.gameState == gp.cutsceneState) {
 					
 					npc.dialogueIndex++;
 					gp.keyH.enterPressed = false;
@@ -427,6 +424,9 @@ public class UI {
 			
 			if(gp.gameState == gp.dialogueState) {
 				gp.gameState = gp.playState;
+			}
+			if(gp.gameState == gp.cutsceneState) {
+				gp.csManager.scenePhase++;
 			}
 		}
 		

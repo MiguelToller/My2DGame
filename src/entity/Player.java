@@ -139,7 +139,7 @@ public class Player extends Entity {
 	}
 	
 	public void getImage() {
-
+		
 		up1 = setup("/player/player_up_1", gp.tileSize, gp.tileSize);
 		up2 = setup("/player/player_up_2", gp.tileSize, gp.tileSize);
 		up3 = setup("/player/player_up_3", gp.tileSize, gp.tileSize);
@@ -679,8 +679,9 @@ public class Player extends Entity {
 		if (transparent == true) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
 		}
-		
-		g2.drawImage(image, tempScreenX, tempScreenY, null);	
+		if (drawing == true) {
+			g2.drawImage(image, tempScreenX, tempScreenY, null);	
+		}
 
 		// Reset alpha
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
