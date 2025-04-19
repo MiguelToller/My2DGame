@@ -12,7 +12,7 @@ Most of the core code is based on RyiSnow's original project, with some modifica
 - Custom visual assets (character, tiles, enemies, etc.)
 - Code structure and organization tweaks
 
-This project was made for learning and educational purposes.
+> This project was made for learning and educational purposes.
 
 ---
 
