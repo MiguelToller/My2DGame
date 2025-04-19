@@ -12,8 +12,6 @@ Most of the core code is based on RyiSnow's original project, with some modifica
 - Custom visual assets (character, tiles, enemies, etc.)
 - Code structure and organization tweaks
 
-> This project was made for learning and educational purposes.
-
 ---
 
 ## How to run the project
@@ -30,3 +28,4 @@ You can compile and run the project using your preferred IDE (e.g., IntelliJ IDE
 - Do not redistribute any of RyiSnow's original assets.
 
 Special thanks to **RyiSnow** for his amazing tutorials and clear guidelines for learners and developers.
+> This project was made for learning and educational purposes.
